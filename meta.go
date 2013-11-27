@@ -18,7 +18,7 @@ type TreeData struct {
 	Free               []int32
 	Size, Index        *int32
 	Verion             *uint32
-	other_             []byte
+	Other_             []byte
 }
 
 func (self *TreeData) Reset() {
@@ -90,4 +90,87 @@ func (self *TreeData) GetVersion() uint32 {
 		return *self.Verion
 	}
 	return 0
+}
+
+type IndexData struct {
+	Id      *int32
+	Version *uint32
+	Other_  []byte
+}
+
+func (self *IndexData) Reset() {
+	*self = IndexData{}
+}
+
+func (self *IndexData) String() string {
+	return fmt.Sprintf("%v", self)
+}
+
+func (self *IndexData) GetId() int32 {
+	if self != nil && self.Id != nil {
+		return *self.Id
+	}
+	return 0
+}
+
+func (self *IndexData) GetVersion() uint32 {
+	if self != nil && self.Version != nil {
+		return *self.Version
+	}
+	return 0
+}
+
+type NodeRecordData struct {
+	Children []int32
+	Keys     [][]byte
+	Other_   []byte
+}
+
+func (self *NodeRecordData) Reset() {
+	*self = NodeRecordData{}
+}
+
+func (self *NodeRecordData) String() string {
+	return fmt.Sprintf("%v", self)
+}
+
+func (self *NodeRecordData) GetChildren() []int {
+	if self != nil {
+		return self.Children
+	}
+	return nil
+}
+
+func (self *NodeRecordData) GetKeys() [][]byte {
+	if self != nil {
+		return self.Keys
+	}
+	return nil
+}
+
+type LeafRecordData struct {
+	Keys, Vals [][]byte
+	Other_     []byte
+}
+
+func (self *LeafRecordData) Reset() {
+	*self = LeafRecordData{}
+}
+
+func (self *LeafRecordData) String() string {
+	return fmt.Sprintf("%v", self)
+}
+
+func (self *LeafRecordData) GetKeys() [][]byte {
+	if self != nil {
+		return self.Keys
+	}
+	return nil
+}
+
+func (self *LeafRecordData) GetVils() [][]byte {
+	if self != nil {
+		return self.Vals
+	}
+	return nil
 }
