@@ -27,14 +27,14 @@ func InitTree() *Tree {
 	self := new(Tree)
 	self.nodes = make([]TreeNode, TreeSize)
 	self.TreeData = TreeData{
-		Size:      int32(TreeSize),
-		LeafMax:   int32(LeafSize),
-		NodeMax:   int32(NodeSize),
-		LeafCount: int32(0),
-		NodeCount: int32(0),
-		Index:     int32(0),
+		Size:    TreeSize,
+		LeafMax: *LeafSize,
+		NodeMax: *NodeSize,
+		//	LeafCount: **int32(0),
+		//	NodeCount: **int32(0),
+		//	Index:     **int32(0),
 	}
-	self.Version = uint32(0)
+	//self.Version = uint32(0)
 	self.Root = int32(self.initLeaf().GetId())
 	self.state = StateNormal
 	return self

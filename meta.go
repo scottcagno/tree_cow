@@ -17,7 +17,7 @@ type TreeData struct {
 	LeafCount, LeafMax *int32
 	Free               []int32
 	Size, Index        *int32
-	Verion             *uint32
+	Version            *uint32
 	Other_             []byte
 }
 
@@ -86,8 +86,8 @@ func (self *TreeData) GetIndex() int32 {
 }
 
 func (self *TreeData) GetVersion() uint32 {
-	if self != nil && self.Verion != nil {
-		return *self.Verion
+	if self != nil && self.Version != nil {
+		return *self.Version
 	}
 	return 0
 }
@@ -134,7 +134,7 @@ func (self *NodeRecordData) String() string {
 	return fmt.Sprintf("%v", self)
 }
 
-func (self *NodeRecordData) GetChildren() []int {
+func (self *NodeRecordData) GetChildren() []int32 {
 	if self != nil {
 		return self.Children
 	}

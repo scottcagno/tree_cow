@@ -14,12 +14,12 @@ const (
 )
 
 const (
-	isNode = itoa
+	isNode = iota
 	isLeaf
 )
 
 const (
-	StateNormal = itoa
+	StateNormal = iota
 	StateDump
 	StateGC
 )
