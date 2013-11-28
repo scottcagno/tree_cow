@@ -27,15 +27,15 @@ func InitTree() *Tree {
 	self := new(Tree)
 	self.nodes = make([]TreeNode, TreeSize)
 	self.TreeData = TreeData{
-		Size:    TreeSize,
-		LeafMax: *LeafSize,
-		NodeMax: *NodeSize,
-		//	LeafCount: **int32(0),
-		//	NodeCount: **int32(0),
-		//	Index:     **int32(0),
+		Size:      *(TreeSize),
+		LeafMax:   *(LeafSize),
+		NodeMax:   *(NodeSize),
+		LeafCount: *(0),
+		NodeCount: *(0),
+		Index:     *(0),
 	}
 	//self.Version = uint32(0)
-	self.Root = int32(self.initLeaf().GetId())
+	self.Root = *(self.initLeaf().GetId())
 	self.state = StateNormal
 	return self
 }
@@ -50,7 +50,8 @@ func (self *Tree) Add(r *Record) bool {
 		if len(clonedNode.GetKeys()) > int(self.GetNodeMax()) {
 			node := self.initNode()
 			k, l, r := clonedNode.split(self)
-			self.Root = int32(n.GetId())
+			node.addOnce(k, l, r, self)
+			self.Root = int32(node.GetId())
 			self.nodes[int(self.GetRoot())] = node
 		} else {
 			self.Root = int32(clonedNode.GetId())
@@ -91,9 +92,9 @@ func (self *Tree) Del(k []byte) bool {
 	ok, clonedNode, _ := self.nodes[self.GetRoot()].del(k, self)
 	if ok {
 		if len(clonedNode.GetKeys()) == 0 {
-			if node, ok := clonedNode.(*Node); ok {
-				self.Root = int32(self.nodes[clonedNode.Clildren[0]].GetId())
-				self.markDup(node.GetId())
+			if clonedNode, ok := clonedNode.(*Node); ok {
+				self.Root = int32(self.nodes[clonedNode.Children[0]].GetId())
+				self.markDup(clonedNode.GetId())
 			} else {
 				self.Root = int32(clonedNode.GetId())
 			}
