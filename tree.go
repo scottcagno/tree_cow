@@ -137,6 +137,7 @@ func (self *Tree) initId() int32 {
 	var id int32
 	if len(self.Free) > 0 {
 		id = self.Free[len(self.Free)-1]
+		self.Free = self.Free[:len(self.Free)-1]
 	} else {
 		if self.GetIndex() >= self.GetSize() {
 			self.nodes = append(self.nodes, make([]TreeNode, TreeSize)...)

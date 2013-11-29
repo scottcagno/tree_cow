@@ -170,7 +170,7 @@ func (self *LeafRecordData) GetKeys() [][]byte {
 	return nil
 }
 
-func (self *LeafRecordData) GetVils() [][]byte {
+func (self *LeafRecordData) GetVals() [][]byte {
 	if self != nil {
 		return self.Vals
 	}

@@ -52,8 +52,8 @@ func (self *Leaf) split(t *Tree) (k []byte, l, r int32) {
 	leaf.Vals = make([][]byte, len(self.Vals[mid:]))
 	copy(leaf.Vals, self.Vals[mid:])
 	leaf.Keys = make([][]byte, len(self.Keys[mid:]))
-	self.Vals = self.Vals[mid:]
-	copy(self.Keys, self.Keys[mid:])
+	self.Vals = self.Vals[:mid]
+	copy(leaf.Keys, self.Keys[mid:])
 	self.Keys = self.Keys[:mid]
 	l, r, k = self.GetId(), leaf.GetId(), leaf.Keys[0]
 	return
