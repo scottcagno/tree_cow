@@ -11,6 +11,8 @@ import (
 	"fmt"
 )
 
+func init() {}
+
 type TreeData struct {
 	Root               *int32
 	NodeCount, NodeMax *int32

@@ -17,3 +17,11 @@ type TreeNode interface {
 	GetId() int32
 	GetKeys() [][]byte
 }
+
+func int32p(n int32) *int32 {
+	return &n
+}
+
+func uint32p(n uint32) *uint32 {
+	return &n
+}

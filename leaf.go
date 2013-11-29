@@ -69,7 +69,7 @@ func (self *Leaf) add(r *Record, t *Tree) (bool, TreeNode) {
 	}
 	var clonedLeaf *Leaf
 	if len(self.Keys) == 0 {
-		clonedLeaf = 1
+		clonedLeaf = self
 	} else {
 		clonedLeaf, _ = self.clone(t).(*Leaf)
 		t.markDup(self.GetId())
